@@ -1,0 +1,112 @@
+{
+  "name": "perchance-helper",
+  "displayName": "Perchance Helper",
+  "description": "A Blackbox extension for helping with Perchance.org coding, including creating Perchance lists and generating HTML structures for generators.",
+  "version": "1.0.0",
+  "homepage": "https://github.com/mosberg/perchance-helper-extension",
+  "author": {
+    "name": "Mosberg"
+  },
+  "mcp": {
+    "tools": [
+      {
+        "name": "create_perchance_list",
+        "description": "Creates a Perchance list syntax with the given items and optional weights.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The name of the list variable (e.g., 'colors')"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Array of items for the list (e.g., ['red', 'blue', 'green'])"
+            },
+            "weights": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "description": "Optional weights for each item. If provided, must match the length of items (e.g., [1, 2, 1])"
+            }
+          },
+          "required": [
+            "name",
+            "items"
+          ]
+        }
+      },
+      {
+        "name": "generate_perchance_html",
+        "description": "Generates basic HTML structure for a Perchance generator page, including scripts to display random outputs.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "Title for the HTML page (e.g., 'Random Name Generator')"
+            },
+            "lists": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Array of list variable names to include and randomize (e.g., ['firstNames', 'lastNames'])"
+            },
+            "output_div_id": {
+              "type": "string",
+              "description": "ID for the output div (default: 'output')",
+              "default": "output"
+            }
+          },
+          "required": [
+            "title",
+            "lists"
+          ]
+        }
+      }
+    ],
+    "prompts": [
+      {
+        "name": "perchance_list_tutorial",
+        "description": "Provides a tutorial and examples for creating Perchance lists",
+        "arguments": [
+          {
+            "name": "list_type",
+            "description": "Type of list to show examples for (e.g., 'simple', 'weighted', 'nested')",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "perchance_html_template",
+        "description": "Provides HTML templates for Perchance generators with best practices",
+        "arguments": [
+          {
+            "name": "template_type",
+            "description": "Type of template to provide (e.g., 'basic', 'advanced')",
+            "required": false
+          }
+        ]
+      }
+    ],
+    "resources": [
+      {
+        "uri": "perchance:docs",
+        "name": "Perchance Documentation",
+        "description": "Summarized Perchance.org documentation and syntax reference",
+        "mimeType": "text/plain"
+      },
+      {
+        "uri": "perchance:examples",
+        "name": "Perchance Examples",
+        "description": "Common examples and patterns for Perchance coding",
+        "mimeType": "text/plain"
+      }
+    ]
+  }
+}
